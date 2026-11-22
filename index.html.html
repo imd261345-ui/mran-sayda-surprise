@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A Surprise for Sayeda ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;overflow:hidden;display:grid;place-items:center;background:radial-gradient(circle at top,#4a1029,#160611 75%);font-family:Poppins,sans-serif;color:#fff}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+.wrap{position:relative;z-index:2;width:min(92vw,410px);min-height:570px;padding:28px 23px;border:1px solid #ffadc455;border-radius:27px;background:linear-gradient(160deg,#9f1946ed,#450c27f5);box-shadow:0 25px 75px #0009,0 0 35px #ff3d7733;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.wrap:before{content:"";position:absolute;inset:8px;border:1px solid #ffd5e22b;border-radius:21px;pointer-events:none}
+.glow{position:absolute;width:210px;height:210px;top:0;background:#ff3c7a33;filter:blur(40px);border-radius:50%;animation:pulse 3s infinite}
+@keyframes pulse{50%{transform:scale(1.35);opacity:.5}}
+.small{font-size:10px;font-weight:600;letter-spacing:4px;color:#ffd4e0;text-transform:uppercase;text-shadow:0 0 12px #ff9fbd;padding:7px 13px;border:1px solid #ffc2d733;border-radius:99px;background:#ffffff0b}
+h1{font:700 clamp(43px,11vw,59px)/1.08 'Dancing Script',cursive;color:#fff0f5;text-shadow:0 3px 0 #a82a50,0 0 12px #ff91b3,0 0 28px #ff4f89;margin:15px 0 17px;letter-spacing:.3px;animation:titleFloat 3s ease-in-out infinite}
+@keyframes titleFloat{0%,100%{transform:translateY(0);filter:drop-shadow(0 0 5px #ff83a8)}50%{transform:translateY(-4px);filter:drop-shadow(0 0 13px #ff83a8)}}
+.bear{font-size:94px;line-height:1.3;filter:drop-shadow(0 8px 10px #25000e);animation:bob 2s infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.question{font-family:'Dancing Script',cursive;font-size:clamp(25px,6.5vw,31px);font-weight:700;line-height:1.25;margin:13px 0 25px;color:#fff5f8;text-shadow:0 2px 12px #ff7da7;max-width:330px}
+.actions{display:flex;gap:13px;width:100%;justify-content:center}
+button{border:0;border-radius:99px;padding:13px 26px;font:700 13px Poppins;letter-spacing:.5px;cursor:pointer;transition:transform .2s,filter .2s;box-shadow:0 8px 23px #1c000c44}
+button:active{transform:scale(.96)}
+.yes{background:linear-gradient(90deg,#ff2d68,#ff83a0);color:white;box-shadow:0 8px 22px #ff2d6855}
+.no{background:#ffffff1c;border:1px solid #ffd4e077;color:#fff;position:relative;z-index:3;touch-action: manipulation}
+.note{font-size:11px;color:#ffc6d6;margin-top:19px;min-height:18px}
+.hidden{display:none!important}
+#transition{position:fixed;inset:0;z-index:3;display:grid;place-items:center;background:radial-gradient(circle,#751534,#1b0612);opacity:0;pointer-events:none;transition:opacity .45s}
+#transition.show{opacity:1}
+#transition p{font:700 29px 'Dancing Script',cursive;color:#ffe5ed;text-shadow:0 0 18px #ff4f83;text-align:center;padding:20px}
+.final-title{font:700 clamp(49px,12vw,61px)/1.08 'Dancing Script',cursive;margin:8px 0;color:#fff0f5;text-shadow:0 3px 0 #a82a50,0 0 13px #ff91b3,0 0 28px #ff4f89;animation:titleFloat 3s ease-in-out infinite}
+.final-sub{font-size:14px;color:#ffd3df;margin-bottom:10px}
+.final-bear{font-size:83px;margin:7px 0;animation:bob 2s infinite}
+.msg{font-family:Poppins,sans-serif;font-size:13px;font-weight:500;line-height:1.95;letter-spacing:.12px;text-align:center;background:linear-gradient(145deg,#ffffff1b,#ffffff0a);border:1px solid #ffd5e066;border-radius:19px;padding:19px 17px;margin:15px 0 19px;color:#fff7fa;box-shadow:inset 0 1px 0 #ffffff1c,0 10px 28px #25000f33;text-shadow:0 1px 5px #3d071b}
+.signature{display:block;text-align:center;font-family:'Dancing Script',cursive;font-size:23px;font-weight:700;letter-spacing:.25px;margin-top:13px;color:#ffe2eb;text-shadow:0 0 12px #ff77a0}
+.again{background:linear-gradient(90deg,#ff2d68,#ff83a0);color:#fff;box-shadow:0 8px 22px #ff2d6855}
+@media(max-height:650px){.wrap{min-height:94vh;padding:17px}.bear{font-size:70px}.final-bear{font-size:65px}.msg{padding:10px;margin:8px}}
+</style>
+</head>
+<body>
+<canvas id="fx"></canvas>
+<div class="wrap" id="questionCard">
+ <div class="glow"></div>
+ <div class="small">A little question for you</div>
+ <div class="bear">🧸💗</div>
+ <h1>Hey, Sayeda!</h1>
+ <div class="question">Can I be your best friend, Sayda? 🥺❤️</div>
+ <div class="actions">
+  <button class="yes" id="yesBtn">YES! 💖</button>
+  <button class="no" id="noBtn">No 🙈</button>
+ </div>
+ <div class="note" id="note">Choose honestly… 😉</div>
+</div>
+<div id="transition"><p>Sending a thousand hearts<br>your way, Sayeda… 💗</p></div>
+<div class="wrap hidden" id="finalCard">
+ <div class="glow"></div>
+ <div class="final-bear">🧸💕🧸</div>
+ <div class="final-title">I knew it! 😍</div>
+ <div class="final-sub">A Little Surprise for <b>Sayeda</b> ❤️</div>
+ <div class="msg">✧ &nbsp; Sayda, please be my best friend! Someone who makes me laugh in bad times and good times—please become one! 😂💖</div>
+ <button class="again" id="againBtn">🎆 Celebrate Again</button>
+</div>
+<script>
+const canvas=document.getElementById('fx'),ctx=canvas.getContext('2d');let W,H,parts=[];
+function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight}resize();addEventListener('resize',resize);
+const palette=['#ff477e','#ff9bb7','#ffd1df','#fff0f5','#ff2d68','#ffbdd0'];
+function drawHeart(p){ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.globalAlpha=p.a;ctx.fillStyle=p.c;ctx.beginPath();ctx.moveTo(0,p.s*.28);ctx.bezierCurveTo(-p.s*.55,-p.s*.12,-p.s,-p.s*.03,-p.s*.5,p.s*.48);ctx.bezierCurveTo(-p.s*.3,p.s*.75,0,p.s,0,p.s);ctx.bezierCurveTo(0,p.s,p.s*.3,p.s*.75,p.s*.5,p.s*.48);ctx.bezierCurveTo(p.s,-p.s*.03,p.s*.55,-p.s*.12,0,p.s*.28);ctx.fill();ctx.restore()}
+function burst(x,y,n=60){for(let i=0;i<n;i++){let a=Math.PI*2*i/n+(Math.random()-.5)*.25,v=1.5+Math.random()*5;parts.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-1,s:8+Math.random()*13,c:palette[Math.random()*palette.length|0],a:1,d:.006+Math.random()*.009,r:Math.random(),vr:(Math.random()-.5)*.07})}}
+function shower(){for(let i=0;i<9;i++)setTimeout(()=>burst(Math.random()*W,H*(.18+Math.random()*.65),38),i*170)}
+function animate(){ctx.clearRect(0,0,W,H);for(let i=parts.length-1;i>=0;i--){let p=parts[i];p.x+=p.vx;p.y+=p.vy;p.vy+=.025;p.vx*=.992;p.r+=p.vr;p.a-=p.d;if(p.a<=0)parts.splice(i,1);else drawHeart(p)}requestAnimationFrame(animate)}animate();
+const yes=document.getElementById('yesBtn'),no=document.getElementById('noBtn'),note=document.getElementById('note');
+const reactions=[
+ 'Hehe! You almost got me! 😜',
+ 'Nope, that button is too shy! 🙈',
+ 'Try YES instead, Sayda! 💗',
+ 'Oops! The NO button ran away! 😂',
+ 'I believe you meant YES! 🥹💕',
+ 'Catch me if you can! 🏃‍♂️💨'
+];
+let noTries=0;
+function dodgeNo(e){
+ if(e) e.preventDefault();
+ const card=document.getElementById('questionCard');
+ const area=card.getBoundingClientRect();
+ const btn=no.getBoundingClientRect();
+ const maxX=Math.max(8,area.width-btn.width-24);
+ const maxY=Math.max(150,area.height-btn.height-24);
+ no.style.position='absolute';
+ no.style.left=(12+Math.random()*Math.max(0,maxX-12))+'px';
+ no.style.top=(Math.min(area.height-70,Math.max(145,Math.random()*maxY)))+'px';
+ no.style.transform='rotate('+(Math.random()*24-12)+'deg) scale('+(0.92+Math.random()*.12)+')';
+ note.textContent=reactions[noTries%reactions.length];
+ noTries++;
+}
+no.addEventListener('pointerenter',dodgeNo);
+no.addEventListener('pointerdown',dodgeNo);
+no.addEventListener('click',dodgeNo);
+no.addEventListener('touchstart',dodgeNo,{passive:false});
+no.addEventListener('focus',dodgeNo);
+yes.addEventListener('click',()=>{
+ document.getElementById('questionCard').classList.add('hidden');
+ const t=document.getElementById('transition');t.classList.add('show');shower();
+ setTimeout(()=>{t.classList.remove('show');t.classList.add('hidden');document.getElementById('finalCard').classList.remove('hidden');shower()},2800);
+});
+document.getElementById('againBtn').addEventListener('click',shower);
+</script>
+</body></html>
